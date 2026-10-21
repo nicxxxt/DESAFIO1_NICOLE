@@ -1,0 +1,368 @@
+
+/* ===== CONFIGURAÇÕES GERAIS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #39204f;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+
+    /* Degradê roxo para branco */
+    background: linear-gradient(
+        180deg,
+        #4b087a 0%,
+        #873ac0 25%,
+        #d9b9f0 55%,
+        #ffffff 100%
+    );
+    background-attachment: fixed;
+}
+
+/* ===== ESTRELAS CAINDO AO FUNDO ===== */
+body::before,
+body::after {
+    content: "✦  ✧  ⋆  ✦  ⋆  ✧  ✦  ⋆  ✧";
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    z-index: 0;
+    pointer-events: none;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    text-align: center;
+    line-height: 100px;
+    font-size: 22px;
+    letter-spacing: 25px;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 0 10px #ffffff;
+    animation: estrelasCaindo 18s linear infinite;
+}
+
+body::after {
+    font-size: 15px;
+    letter-spacing: 40px;
+    line-height: 140px;
+    color: rgba(255, 255, 255, 0.6);
+    animation: estrelasCaindo 28s linear infinite;
+    animation-delay: -12s;
+}
+
+@keyframes estrelasCaindo {
+    from {
+        transform: translateY(-20%);
+    }
+
+    to {
+        transform: translateY(70%);
+    }
+}
+
+/* ===== CONTEÚDO PRINCIPAL ===== */
+.container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* ===== CABEÇALHO ===== */
+header {
+    text-align: center;
+    color: white;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    border-radius: 22px;
+
+    background: rgba(75, 8, 122, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 8px 30px rgba(45, 0, 75, 0.2);
+}
+
+header h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px #e8c9ff;
+}
+
+header p {
+    font-size: 16px;
+}
+
+/* ===== CARTÕES ===== */
+.card {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    padding: 24px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 25px rgba(62, 15, 91, 0.13);
+}
+
+h2 {
+    color: #69259b;
+    font-size: 21px;
+    margin-bottom: 18px;
+}
+
+/* ===== TAMANHOS DO AÇAÍ ===== */
+.tamanhos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.opcao-tamanho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+
+    padding: 18px 12px;
+    border: 2px solid #e1c8f2;
+    border-radius: 16px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.opcao-tamanho:hover {
+    transform: translateY(-3px);
+    border-color: #a44bdd;
+}
+
+.opcao-tamanho:has(input:checked) {
+    background: #f4e6ff;
+    border-color: #873ac0;
+    box-shadow: 0 0 15px rgba(135, 58, 192, 0.15);
+}
+
+.opcao-tamanho span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.opcao-tamanho strong,
+.opcao-adicional strong {
+    color: #7628a8;
+}
+
+.opcao-tamanho small {
+    color: #755b83;
+}
+
+/* ===== CHECKBOXES ===== */
+.opcao-tamanho input,
+.opcao-adicional input {
+    width: 20px;
+    height: 20px;
+    accent-color: #873ac0;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.limite {
+    color: #725580;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* ===== ADICIONAIS ===== */
+.adicionais {
+    display: grid;
+    gap: 12px;
+}
+
+.opcao-adicional {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+
+    background: #ffffff;
+    border: 2px solid #eadcf4;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.opcao-adicional:hover {
+    border-color: #b46be0;
+    transform: translateX(3px);
+}
+
+.opcao-adicional:has(input:checked) {
+    background: #f5eaff;
+    border-color: #873ac0;
+}
+
+.opcao-adicional span {
+    flex: 1;
+}
+
+.opcao-adicional strong {
+    font-size: 14px;
+}
+
+/* ===== ALERTA DE LIMITE ===== */
+.alerta {
+    background: #fff0f5;
+    color: #a51d50;
+    border: 1px solid #ed8bb2;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+/* ===== RESUMO DO PEDIDO ===== */
+.resumo p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+#lista-resumo {
+    margin-top: 12px;
+    color: #755b83;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    border-top: 2px solid #eadcf4;
+    margin-top: 22px;
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+.total strong {
+    color: #7628a8;
+    font-size: 26px;
+}
+
+/* ===== BOTÃO DE CONFIRMAR ===== */
+button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 17px;
+    border: none;
+    border-radius: 13px;
+
+    background: linear-gradient(
+        90deg,
+        #641b91,
+        #a34bd4
+    );
+
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+
+    box-shadow: 0 5px 15px rgba(100, 27, 145, 0.25);
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(100, 27, 145, 0.35);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ===== MENSAGEM DO PEDIDO ===== */
+.resultado {
+    margin-top: 16px;
+    color: #542078;
+    font-weight: bold;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+/* ===== RODAPÉ ===== */
+footer {
+    text-align: center;
+    color: #ffffff;
+    padding: 18px 10px;
+    text-shadow: 0 1px 5px rgba(70, 20, 100, 0.4);
+    font-size: 14px;
+}
+
+/* ===== ACESSIBILIDADE ===== */
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #d7a6ff;
+    outline-offset: 4px;
+}
+
+/* ===== CELULARES ===== */
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 29px;
+    }
+
+    .card {
+        padding: 17px;
+    }
+
+    .tamanhos {
+        grid-template-columns: 1fr;
+    }
+
+    .opcao-adicional {
+        padding: 12px 10px;
+        gap: 8px;
+    }
+
+    .opcao-adicional strong {
+        font-size: 12px;
+    }
+
+    .total strong {
+        font-size: 22px;
+    }
+}
+
+/* Respeita quem prefere menos animações */
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after {
+        animation: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}
